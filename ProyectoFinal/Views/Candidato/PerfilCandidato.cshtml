@@ -1,10 +1,29 @@
 ﻿<div class="row justify-content-center">
     <button type="button" class="btn btn-outline-primary" id="btnAddCandidato">
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-    </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
     </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <button type="button" class="btn btn-outline-primary" id="btnUpdateCandidato">
@@ -74,102 +93,94 @@
 
 <br />
 <br />
-<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#staticBackdrop">
-    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-    </svg>
-</button>
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Nombre de la empresa</label>
-                        <input type="text" class="form-control" id="txtNEmpresaExp" />
+<div>
+    <button type="button" class="btn btn-outline-primary" id="btnAddExpLab" data-toggle="modal" data-target="#staticBackdrop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </button>
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de Empresa</label>
+                            <input type="text" class="form-control" id="txtNEmpresaExp" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Giro de la empresa</label>
+                            <input type="text" class="form-control" id="txtNEmpresaExp" />
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label>Giro de la empresa</label>
-                        <input type="text" class="form-control" id="txtNEmpresaExp" />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Cargo</label>
+                            <input type="text" class="form-control" id="txtNEmpresaExp" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Area</label>
+                            <input type="text" class="form-control" id="txtNEmpresaExp" />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Estado</label>
+                        </div>
+                        <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" name="options" id="option1" checked> Actualmente
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option2"> Concluido
+                            </label>
+
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+
+                        <div class="col-md-1">
+                            <label>Periodo</label>
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" />
+                        </div>
+
+                        <div class="col-md-1">
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <label>Descripción de la función</label>
+                            <textarea class="container-fluid"></textarea>
+                        </div>
+
+
                     </div>
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Cargo</label>
-                        <input type="text" class="form-control" id="txtNEmpresaExp" />
-                    </div>
-                    <div class="col-md-6">
-                        <label>Area</label>
-                        <input type="text" class="form-control" id="txtNEmpresaExp" />
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Agregar</button>
                 </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Cargo</label>
-                        <input type="text" class="form-control" id="txtNEmpresaExp" />
-                    </div>
-                    <div class="col-md-6">
-                        <label>Area</label>
-                        <input type="text" class="form-control" id="txtNEmpresaExp" />
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Estado</label>
-                    </div>
-                    <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                            <input type="radio" name="options" id="option1" checked> Actualmente
-                        </label>
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="option2"> Concluido
-                        </label>
-
-                    </div>
-
-                </div>
-                <br />
-                <div class="row">
-
-                    <div class="col-md-1">
-                        <label>Periodo</label>
-                        <input type="text" />
-                    </div>
-                    <div class="col-md-1">
-                        <input type="text" />
-                    </div>
-
-                    <div class="col-md-1">
-                        <input type="text" />
-                    </div>
-                    <div class="col-md-1">
-                        <input type="text" />
-                    </div>
-
-                </div>
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <label>Descripción de la función</label>
-                        <textarea class="container-fluid"></textarea>
-                    </div>
-                    
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Agregar</button>
             </div>
         </div>
     </div>
@@ -177,10 +188,38 @@
 <div class="container" style="border:1px solid #1582d1">
     <div class="row justify-content-center">
         <p1>Experiencia laboral</p1>
+
     </div>
 </div>
 <br />
 <br />
+<div>
+    <button type="button" class="btn btn-outline-primary" id="btnAddFormAcad" data-toggle="modal" data-target="#staticBackdrop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container" style="border:1px solid #1582d1">
     <div class="row justify-content-center">
         <p1>Formación académica</p1>
@@ -188,6 +227,31 @@
 </div>
 <br />
 <br />
+<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#staticBackdrop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    </svg>
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container" style="border:1px solid #1582d1">
     <div class="row justify-content-center">
         <p1>Idiomas</p1>
@@ -195,6 +259,12 @@
 </div>
 <br />
 <br />
+<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#staticBackdrop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    </svg>
+</button>
 <div class="container" style="border:1px solid #1582d1" >
     <div class="row justify-content-center">
         <p1>Conocimientos y habilidades</p1>
