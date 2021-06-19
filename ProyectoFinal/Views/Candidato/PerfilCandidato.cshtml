@@ -5,25 +5,7 @@
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
         </svg>
     </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <button type="button" class="btn btn-outline-primary" id="btnUpdateCandidato">
@@ -58,15 +40,15 @@
 
         </div>
         <div class="col-md-3">
-            <label >Nacionalidad</label>
+            <label>Nacionalidad</label>
 
         </div>
         <div class="col-md-3">
-            <label >Correo</label>
+            <label>Correo</label>
 
         </div>
         <div class="col-md-3">
-            <label >Celular</label>
+            <label>Celular</label>
 
         </div>
     </div>
@@ -93,18 +75,19 @@
 
 <br />
 <br />
+@*EXPERIENCIA LABORAL*@
 <div>
-    <button type="button" class="btn btn-outline-primary" id="btnAddExpLab" data-toggle="modal" data-target="#staticBackdrop">
+    <button type="button" class="btn btn-outline-primary" id="btnAddExpLab" data-toggle="modal" data-target="#ModalExpLab">
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
         </svg>
     </button>
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="ModalExpLab" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -151,20 +134,16 @@
                     <br />
                     <div class="row">
 
-                        <div class="col-md-1">
-                            <label>Periodo</label>
-                            <input type="text" />
-                        </div>
-                        <div class="col-md-1">
-                            <input type="text" />
+                        <div class="col-md-5">
+                            <label>Periodo Inicio</label>
+                            <input type="date" />
                         </div>
 
-                        <div class="col-md-1">
-                            <input type="text" />
+                        <div class="col-md-5">
+                            <label>Periodo Fin</label>
+                            <input type="date" />
                         </div>
-                        <div class="col-md-1">
-                            <input type="text" />
-                        </div>
+
 
                     </div>
                     <div class="row">
@@ -193,14 +172,16 @@
 </div>
 <br />
 <br />
+
+@*FORMACIÓN ACADEMICA*@
 <div>
-    <button type="button" class="btn btn-outline-primary" id="btnAddFormAcad" data-toggle="modal" data-target="#staticBackdrop">
+    <button type="button" class="btn btn-outline-primary" id="btnAddFormAcad" data-toggle="modal" data-target="#ModelFormacion">
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
         </svg>
     </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ModelFormacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -210,7 +191,56 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de la Institución</label>
+                            <input type="text" class="form-control" id="txtnombrecentroed" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Tipo de estudio</label>
+                            <input type="text" class="form-control" id="txttipoestudio" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Estado</label>
+                        </div>
+                        <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" name="options" id="option1" checked> En curso
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option2"> Graduado
+                            </label>
+
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Titulo/Carrera</label>
+                            <input type="text" class="form-control" id="txttitulocarrera" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Area de estudio</label>
+                            <input type="text" class="form-control" id="txtareaestudio" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Fecha Inicio</label>
+                            <input type="date" class="form-control" id="datefechainicio" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Fecha Fin</label>
+                            <input type="date" class="form-control" id="datefechafin" />
+                        </div>
+                    </div>
+                    <br />
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -227,13 +257,16 @@
 </div>
 <br />
 <br />
-<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#staticBackdrop">
+
+@*IDIOMAS*@
+
+<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#ModelIdioma">
     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
     </svg>
 </button>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ModelIdioma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -243,7 +276,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>IDIOMA</label>
+                        <input type="text" class="form-control" id="txtidioma" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>NIVEL ORAL</label>
+                        <input type="text" class="form-control" id="txtniveloralidi" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>NIVEL ESCRITO</label>
+                        <input type="text" class="form-control" id="txtnivescrid" />
+                    </div>
+                    
+                </div>
+                <br />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -259,13 +310,41 @@
 </div>
 <br />
 <br />
-<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#staticBackdrop">
+@*CONOCIMIENTOS Y HABILIDADES*@
+
+<button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#ModalConHab">
     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
     </svg>
 </button>
-<div class="container" style="border:1px solid #1582d1" >
+<div class="modal fade" id="ModalConHab" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>INGRESE CONOCIMIENTO</label>
+                        <input type="text" class="form-control" id="txthabconocimcand" />
+                    </div>
+                    
+                </div>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="border:1px solid #1582d1">
     <div class="row justify-content-center">
         <p1>Conocimientos y habilidades</p1>
     </div>
