@@ -1,4 +1,4 @@
-﻿<form>
+﻿<form method="post" action="/Candidato/Grabar">
     <div>
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -29,13 +29,7 @@
             </div>
             <div class="col-md-6">
                 <label>ESTADO CIVIL</label>
-                <select class="form-control" id="optnEstCivil">
-                    <option>Seleccionar</option>
-                    <option>Soltero</option>
-                    <option>Casado</option>
-                    <option>Divorciado</option>
-                    <option>Viudo</option>
-                </select>
+                <input type="text" class="form-control" id="txtEstadoCivil">
             </div>
         </div>
         <div class="row">
@@ -46,34 +40,35 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4">
-                <label>Tipo de identificación</label>
-                <input type="text" class="form-control" id="txtDocumento">
-            </div>
 
-            <div class="col-md-4">
-                <label>Numero de documento</label>
-                <input type="number" class="form-control" id="nbDocumento">
-            </div>
+
+            @*<div class="col-md-4">
+            <label>Numero de documento</label>
+            <input type="number" class="form-control" id="nbDocumento">
+        </div>*@
 
             <div class="col-md-4">
                 <label>Número de contacto</label>
-                <input type="number" class="form-control" id="nbtelefono">
+                <input type="text" class="form-control" id="nbtelefono">
             </div>
-
-        </div>
-        <div class="row">
-            <label>   </label>
-        </div>
-        <div class="row">
-            <label>   </label>
-        </div>
-
-        <div class="row">
             <div class="col-md-4">
-                <label>Nacionalidad</label>
-                <input type="text" class="form-control" id="txtpais">
+                <label>Contraseña</label>
+                <input type="password" class="form-control" id="txtcontraseña" placeholder="Ingreses una nueva contraseña">
             </div>
+
+        </div>
+        <div class="row">
+            <label>   </label>
+        </div>
+        <div class="row">
+            <label>   </label>
+        </div>
+
+        <div class="row">
+            @*<div class="col-md-4">
+                    <label>Nacionalidad</label>
+                    <input type="text" class="form-control" id="txtpais">
+                </div>*@
 
             <div class="col-md-4">
                 <label>Género</label>
@@ -95,10 +90,10 @@
 
             </div>
             <div class="col-md-8">
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+                <textarea id="txtdescrpCand" class="form-control" aria-label="With textarea"></textarea>
             </div>
         </div>
-        
+
         <div class="row">
             <label>   </label>
         </div>
@@ -122,3 +117,56 @@
 
     </div>
 </form>
+    <input type="hidden" id="hidIDCandidato" value="-1" />
+<script>
+
+
+    $("#crearCandidatoForm").click(function () {
+        let vIDCandidato = $("#hidIDCandidato").val();
+        let vNombres = $("#txtNombreCandidato").val();
+        let vApellidos = $("#txtApellidoCandidato").val();
+        let vfechanacim = $("#dateFechNacimCandidato").val();
+        
+        let vEstadoCivil = $("#txtEstadoCivil").val();
+        //FALTA AGREGAR NUMERO DE DNI EN LA BD
+        //let vNumeroDoc = $("#nbDocumento").val();
+        let vTelefono = $("#nbtelefono").val();
+
+        //FALTA RELACIONAR EL PAIS COMO LLAVE FORANEA
+        //let vPais = $("#txtpais").val();
+        let vGenero = $("#txtgenero").val();
+        let vDescripcion = $("#txtdescrpCand").val();
+        let vContraseña = $("#txtcontraseña").val();
+        
+        
+        $.ajax({
+            type: "POST",
+            url: "CREAR",
+            cache: false,
+            data: {
+                id: vIDCandidato,
+                nombre: vNombres,
+                apellido: vApellidos,
+                fechanac: vfechanacim,
+                estadociv: vEstadoCivil,
+                telef: vTelefono,
+                genero: vGenero,
+                descrp: vDescripcion,
+                contra: vContraseña
+                
+
+            },
+            success: function (exito) {
+                if (exito) {
+                    alert("Se registró correctamente....")
+                    return RedirectToAction('PerfilCandidato', 'Candidato');
+                   
+                } else {
+                    alert("Ocurrió un error en la transacción...")
+                }
+            }
+        });
+
+    });
+
+</script>

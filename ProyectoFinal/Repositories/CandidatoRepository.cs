@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProyectoFinal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,6 @@ namespace ProyectoFinal.Repositories
 {
     public class CandidatoRepository
     {
-        
-
         public static async Task<IEnumerable<Candidato>> ListadoAsincrono()
         {
             //using var data = new SalesContext();
@@ -21,13 +20,13 @@ namespace ProyectoFinal.Repositories
             using var response = await httpClient
                 .GetAsync("http://localhost:62992/api/Candidato/GetCandidato");
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var customers = JsonConvert.DeserializeObject<IEnumerable<Candidato>>(apiResponse);
+            var candidato = JsonConvert.DeserializeObject<IEnumerable<Candidato>>(apiResponse);
 
 
-            return customers;
+            return candidato;
         }
 
-       
+
 
         public static async Task<Candidato> Obtener(int id)
         {
@@ -35,10 +34,10 @@ namespace ProyectoFinal.Repositories
             using var response = await httpClient
                 .GetAsync("http://localhost:62992/api/Candidato/GetCandidatoById/" + id);
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var customers = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+            var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
 
-           
-            return customers;
+
+            return candidato;
         }
 
 
@@ -53,10 +52,10 @@ namespace ProyectoFinal.Repositories
             using var response = await httpClient
                 .PostAsync("http://localhost:62992/api/Candidato/PostCandidato", data);
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var customers = JsonConvert.DeserializeObject<Candidato>(apiResponse);
-            if (customers == null)
+            var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+            if (candidato == null)
                 exito = false;
-            
+
             return exito;
         }
 
@@ -67,10 +66,10 @@ namespace ProyectoFinal.Repositories
 
             try
             {
-                //Se obtiene el customer por ID 
+
                 using var httpClient = new HttpClient();
                 using var response = await httpClient
-                    .GetAsync("http://localhost:62992/api/Candidato/PutCandidato/" + Candidato.Id);
+                    .GetAsync("http://localhost:62992/api/Candidato/PutCandidato/" + Candidato.Idcandidat);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 var customerByID = JsonConvert.DeserializeObject<Candidato>(apiResponse);
 
@@ -103,14 +102,10 @@ namespace ProyectoFinal.Repositories
 
             try
             {
-                ////Obtener el customer by ID
-                using var httpClient = new HttpClient();
-                //using var response = await httpClient
-                //    .GetAsync("http://localhost:41984/api/Customer/GetCustomerById/" + id);
-                //string apiResponse = await response.Content.ReadAsStringAsync();
-                //var customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
 
-                //Eliminar by ID
+                using var httpClient = new HttpClient();
+
+
 
                 using var responseDelete = await httpClient
                   .DeleteAsync("http://localhost:62992/api/Candidato/DeleteCandidato/" + id);
@@ -118,11 +113,7 @@ namespace ProyectoFinal.Repositories
                 if ((int)responseDelete.StatusCode == 404)
                     exito = false;
 
-                //using var data = new SalesContext();
-                //var customerNow = await Obtener(id);
 
-                //data.Customer.Remove(customerNow);
-                //await data.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -131,5 +122,8 @@ namespace ProyectoFinal.Repositories
 
             return exito;
         }
+
+
+
     }
 }

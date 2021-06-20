@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoFinal.Models;
+using ProyectoFinal.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,39 @@ namespace ProyectoFinal.Controllers
         public IActionResult PerfilCandidato()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CREAR(int id,
+            string nombre, string apellido, DateTime fechanac, int estadociv,
+            string telef, int genero, string descrp, string contra)
+        {
+            var candidato = new Candidato()
+            {
+
+                Nombres = nombre,
+                Apellidos=apellido,
+                Fechanacim=fechanac,
+                EstadocivilIdestciv=estadociv,
+                Telefono=telef,
+                GeneroIdgenero=genero,
+                Descrpperfil=descrp,
+                Contraseña=contra
+                
+
+
+
+            };
+
+            bool exito = true;
+            if (id == -1)
+                exito = await CandidatoRepository.Insertar(candidato);
+            else
+            {
+                candidato.Idcandidat = id;
+                exito = await CandidatoRepository.Actualizar(candidato);
+            }
+            return Json(exito);
+            
         }
 
 
