@@ -23,6 +23,22 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
+        public IActionResult ListadoExpLab()
+        {
+            return PartialView();
+        }
+        public IActionResult ListadoFormAcad()
+        {
+            return PartialView();
+        }
+        public IActionResult ListadoIdioma()
+        {
+            return PartialView();
+        }
+        public IActionResult ListadoHabilidades()
+        {
+            return PartialView();
+        }
         [HttpPost]
         public async Task<IActionResult> CREAR(int id,
             string nombre, string apellido, DateTime fechanac, int estadociv,
