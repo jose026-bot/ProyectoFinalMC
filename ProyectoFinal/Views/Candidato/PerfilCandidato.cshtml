@@ -1,4 +1,6 @@
-﻿<div class="row justify-content-center">
+﻿@model IEnumerable<Candidato>
+
+<div class="row justify-content-center">
     <button type="button" class="btn btn-outline-primary" id="btnAddCandidato">
         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -20,7 +22,7 @@
     </svg>
 </button>
 
-<div class="container" style="border:1px solid #1582d1">
+< class="container" style="border:1px solid #1582d1">
     <div class="row justify-content-center">
         <div>
             <label>Mis datos</label>
@@ -31,7 +33,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <label id="lblNombreCandidato">NOMBRE DE LA PERSONA</label>
+        <label id="lblNombreCandidato">Customer</label>
     </div>
     <br />
     <div class="row ">
@@ -52,26 +54,27 @@
 
         </div>
     </div>
-    <div class="row ">
-        <div class="col-md-3">
-            <label id="lblNombreCandidato">INSERTAR</label>
 
-        </div>
-        <div class="col-md-3">
-            <label id="lblNombreCandidato">INSERTAR</label>
+    
+        <div class="row ">
+            <div class="col-md-3">
+                <p1>dni</p1>
 
-        </div>
-        <div class="col-md-3">
-            <label id="lblNombreCandidato">INSERTAR</label>
+            </div>
+            <div class="col-md-3">
+                <p1>nacionalidad?</p1>
 
-        </div>
-        <div class="col-md-3">
-            <label id="lblNombreCandidato">INSERTAR</label>
+            </div>
+            <div class="col-md-3">
+                <p1>Correo</p1>
 
-        </div>
-    </div>
+            </div>
+            <div class="col-md-3">
+                <p1>telefono</p1>
 
-</div>
+            </div>
+      </div>   
+    
 
 <br />
 <br />
@@ -292,7 +295,7 @@
                         <label>NIVEL ESCRITO</label>
                         <input type="text" class="form-control" id="txtnivescrid" />
                     </div>
-                    
+
                 </div>
                 <br />
             </div>
@@ -333,7 +336,7 @@
                         <label>INGRESE CONOCIMIENTO</label>
                         <input type="text" class="form-control" id="txthabconocimcand" />
                     </div>
-                    
+
                 </div>
                 <br />
             </div>

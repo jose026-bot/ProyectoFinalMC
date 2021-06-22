@@ -48,11 +48,12 @@ namespace ProyectoFinal.Repositories
             var json = JsonConvert.SerializeObject(Candidato);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            using var httpClient = new HttpClient();
+            using var httpClient = new HttpClient(); 
             using var response = await httpClient
                 .PostAsync("http://localhost:62992/api/Candidato/PostCandidato", data);
             string apiResponse = await response.Content.ReadAsStringAsync();
             var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+            
             if (candidato == null)
                 exito = false;
 

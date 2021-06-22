@@ -1,4 +1,10 @@
-﻿<form method="post" action="/Candidato/Grabar">
+﻿@model ProyectoFinal.Models.Candidato
+
+@{
+    ViewData["Title"] = "NewCandidato";
+}
+
+<form method="post" action="/Candidato/Grabar">
     <div>
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -30,6 +36,8 @@
             <div class="col-md-6">
                 <label>ESTADO CIVIL</label>
                 <input type="text" class="form-control" id="txtEstadoCivil">
+                @*<select id="txtEstadoCivil" class="form-control" asp-items="ViewBag.Estadocivil"></select>*@
+
             </div>
         </div>
         <div class="row">
@@ -43,9 +51,9 @@
 
 
             @*<div class="col-md-4">
-            <label>Numero de documento</label>
-            <input type="number" class="form-control" id="nbDocumento">
-        </div>*@
+                    <label>Numero de documento</label>
+                    <input type="number" class="form-control" id="nbDocumento">
+                </div>*@
 
             <div class="col-md-4">
                 <label>Número de contacto</label>
@@ -73,6 +81,8 @@
             <div class="col-md-4">
                 <label>Género</label>
                 <input type="text" class="form-control" id="txtgenero">
+                @*<select id="txtgenero" class="form-control" asp-items="ViewBag.Genero"></select>*@
+
             </div>
 
 
@@ -117,7 +127,7 @@
 
     </div>
 </form>
-    <input type="hidden" id="hidIDCandidato" value="-1" />
+<input type="hidden" id="hidIDCandidato" value="-1" />
 <script>
 
 
@@ -126,7 +136,7 @@
         let vNombres = $("#txtNombreCandidato").val();
         let vApellidos = $("#txtApellidoCandidato").val();
         let vfechanacim = $("#dateFechNacimCandidato").val();
-        
+
         let vEstadoCivil = $("#txtEstadoCivil").val();
         //FALTA AGREGAR NUMERO DE DNI EN LA BD
         //let vNumeroDoc = $("#nbDocumento").val();
@@ -137,8 +147,8 @@
         let vGenero = $("#txtgenero").val();
         let vDescripcion = $("#txtdescrpCand").val();
         let vContraseña = $("#txtcontraseña").val();
-        
-        
+
+
         $.ajax({
             type: "POST",
             url: "CREAR",
@@ -153,14 +163,14 @@
                 genero: vGenero,
                 descrp: vDescripcion,
                 contra: vContraseña
-                
+
 
             },
             success: function (exito) {
                 if (exito) {
                     alert("Se registró correctamente....")
-                    return RedirectToAction('PerfilCandidato', 'Candidato');
-                   
+
+
                 } else {
                     alert("Ocurrió un error en la transacción...")
                 }
