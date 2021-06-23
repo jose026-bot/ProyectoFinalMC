@@ -11,23 +11,18 @@ namespace ProyectoFinal.Controllers
 {
     public class CandidatoController : Controller
     {
-        //private readonly PortalEmpleo4Context _context;
+        private readonly PortalEmpleo4Context _context;
 
-        //public CandidatoController(PortalEmpleo4Context context)
-        //{
-        //    _context = context;
-        //}
+       public CandidatoController(PortalEmpleo4Context context)
+        {
+            _context = context;
+        }
 
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult NewCandidato()
-        {
-            //ViewData["GeneroIdgenero"] = new SelectList(_context.Genero, "idestciv", "descripcion");
-            //ViewData["EstadocivilIdestciv"] = new SelectList(_context.Estadocivil, "idgenero", "descripcion");
-            return View();
-        }
+    
 
         public IActionResult PerfilCandidato()
         {
@@ -66,8 +61,17 @@ namespace ProyectoFinal.Controllers
             bool exito = await CandidatoRepository.Eliminar(idCandidato);
             return Json(exito);
         }
+        public IActionResult NewCandidato()
+        {
+            ViewData["EstadocivilIdestciv"] = new SelectList(_context.Estadocivil, "Idestciv", "Descripcion");
+            ViewData["GeneroIdgenero"] = new SelectList(_context.Genero, "Idgenero", "Descripcion");
+            return View();
+        }
+
+        
+
         [HttpPost]
-        public async Task<IActionResult> CREAR(int id,
+        public async Task<IActionResult> NewCandidato(int id,
             string nombre, string apellido, DateTime fechanac, int estadociv,
             string telef, int genero, string descrp, string contra)
         {
@@ -84,6 +88,8 @@ namespace ProyectoFinal.Controllers
                 Contraseña=contra
                 
             };
+            ViewData["EstadocivilIdestciv"] = new SelectList(_context.Estadocivil, "Idestciv", "Descripcion", candidato.EstadocivilIdestciv);
+            ViewData["GeneroIdgenero"] = new SelectList(_context.Genero, "Idgenero", "Descripcion", candidato.GeneroIdgenero);
 
             bool exito = true;
             if (id == -1)
@@ -95,14 +101,15 @@ namespace ProyectoFinal.Controllers
             }
             return Json(exito);
 
-            //ViewData["GeneroIdgenero"] = new SelectList(_context.Genero, "idestciv", "descripcion", candidato.GeneroIdgenero);
-            //ViewData["EstadocivilIdestciv"] = new SelectList(_context.Estadocivil, "idgenero", "descripcion", candidato.EstadocivilIdestciv);
-            //return View(candidato);
+            
+            
 
         }
+        
 
-      
 
 
-    }
+
+
+}
 }

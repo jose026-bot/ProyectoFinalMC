@@ -35,8 +35,8 @@
             </div>
             <div class="col-md-6">
                 <label>ESTADO CIVIL</label>
-                <input type="text" class="form-control" id="txtEstadoCivil">
-                @*<select id="txtEstadoCivil" class="form-control" asp-items="ViewBag.Estadocivil"></select>*@
+                @*<input type="text" class="form-control" id="txtEstadoCivil">*@
+            <select asp-for="EstadocivilIdestciv" class="form-control" asp-items="ViewBag.EstadocivilIdestciv"></select>
 
             </div>
         </div>
@@ -80,9 +80,10 @@
 
             <div class="col-md-4">
                 <label>Género</label>
-                <input type="text" class="form-control" id="txtgenero">
+                @*<input type="text" class="form-control" id="txtgenero">*@
                 @*<select id="txtgenero" class="form-control" asp-items="ViewBag.Genero"></select>*@
-
+                <label asp-for="GeneroIdgenero" class="control-label"></label>
+                <select asp-for="GeneroIdgenero" class="form-control" asp-items="ViewBag.GeneroIdgenero"></select>
             </div>
 
 
@@ -137,21 +138,21 @@
         let vApellidos = $("#txtApellidoCandidato").val();
         let vfechanacim = $("#dateFechNacimCandidato").val();
 
-        let vEstadoCivil = $("#txtEstadoCivil").val();
+        let vEstadoCivil = $("#EstadocivilIdestciv").val();
         //FALTA AGREGAR NUMERO DE DNI EN LA BD
         //let vNumeroDoc = $("#nbDocumento").val();
         let vTelefono = $("#nbtelefono").val();
 
         //FALTA RELACIONAR EL PAIS COMO LLAVE FORANEA
         //let vPais = $("#txtpais").val();
-        let vGenero = $("#txtgenero").val();
+        let vGenero = $("#GeneroIdgenero").val();
         let vDescripcion = $("#txtdescrpCand").val();
         let vContraseña = $("#txtcontraseña").val();
 
 
         $.ajax({
             type: "POST",
-            url: "CREAR",
+            url: "NewCandidato",
             cache: false,
             data: {
                 id: vIDCandidato,
