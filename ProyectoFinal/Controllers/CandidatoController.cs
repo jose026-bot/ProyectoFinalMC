@@ -28,18 +28,9 @@ namespace ProyectoFinal.Controllers
         {
             return View();
         }
-        public IActionResult ListadoExpLab()
-        {
-            return PartialView();
-        }
-        public IActionResult ListadoFormAcad()
-        {
-            return PartialView();
-        }
-        public IActionResult ListadoIdioma()
-        {
-            return PartialView();
-        }
+       
+        
+        
         public IActionResult ListadoHabilidades()
         {
             return PartialView();
@@ -111,5 +102,5 @@ namespace ProyectoFinal.Controllers
 
 
 
-}
+    }
 }

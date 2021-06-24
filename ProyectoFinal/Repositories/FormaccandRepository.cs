@@ -9,59 +9,59 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinal.Repositories
 {
-    public class CandidatoRepository
+    public class FormaccandRepository
     {
-        public static async Task<IEnumerable<Candidato>> ListadoAsincrono()
+        public static async Task<IEnumerable<Formaccand>> ListadoAsincrono()
         {
             //using var data = new SalesContext();
             //var customers = await data.Customer.ToListAsync();
 
             using var httpClient = new HttpClient();
             using var response = await httpClient
-                .GetAsync("http://localhost:62992/api/Candidato/GetCandidato");
+                .GetAsync("http://localhost:62992/api/Formaccand/GetFormaccand");
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var candidato = JsonConvert.DeserializeObject<IEnumerable<Candidato>>(apiResponse);
+            var formaccands = JsonConvert.DeserializeObject<IEnumerable<Formaccand>>(apiResponse);
 
 
-            return candidato;
+            return formaccands;
         }
 
 
 
-        public static async Task<Candidato> Obtener(int id)
+        public static async Task<Formaccand> Obtener(int id)
         {
             using var httpClient = new HttpClient();
             using var response = await httpClient
-                .GetAsync("http://localhost:62992/api/Candidato/GetCandidatoById/" + id);
+                .GetAsync("http://localhost:62992/api/Formaccand/GetFormaccandById/" + id);
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+            var formaccands = JsonConvert.DeserializeObject<Formaccand>(apiResponse);
 
 
-            return candidato;
+            return formaccands;
         }
 
 
-        public static async Task<bool> Insertar(Candidato Candidato)
+        public static async Task<bool> Insertar(Formaccand formaccand)
         {
             bool exito = true;
 
-            var json = JsonConvert.SerializeObject(Candidato);
+            var json = JsonConvert.SerializeObject(formaccand);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            using var httpClient = new HttpClient(); 
+            using var httpClient = new HttpClient();
             using var response = await httpClient
-                .PostAsync("http://localhost:62992/api/Candidato/PostCandidato", data);
+                .PostAsync("http://localhost:62992/api/Formaccand/PostFormaccand", data);
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
-            
-            if (candidato == null)
+            var explabcands = JsonConvert.DeserializeObject<Formaccand>(apiResponse);
+
+            if (formaccand == null)
                 exito = false;
 
             return exito;
         }
 
 
-        public static async Task<bool> Actualizar(Candidato Candidato)
+        public static async Task<bool> Actualizar(Formaccand formaccand)
         {
             bool exito = true;
 
@@ -70,20 +70,20 @@ namespace ProyectoFinal.Repositories
 
                 using var httpClient = new HttpClient();
                 using var response = await httpClient
-                    .GetAsync("http://localhost:62992/api/Candidato/GetCandidatoById/" + Candidato.Idcandidat);
+                    .GetAsync("http://localhost:62992/api/Formaccand/GetFormaccandById/" + formaccand.Idformacadem);
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                var customerByID = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+                var customerByID = JsonConvert.DeserializeObject<Formaccand>(apiResponse);
 
                 //Se realizar la actualización del customer
 
-                var json = JsonConvert.SerializeObject(Candidato);
+                var json = JsonConvert.SerializeObject(formaccand);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
                 using var responsePut = await httpClient
-                    .PutAsync("http://localhost:62992/api/Candidato/PutCandidato", data);
+                    .PutAsync("http://localhost:62992/api/Formaccand/PutFormaccand/", data);
 
                 string apiResponsePut = await responsePut.Content.ReadAsStringAsync();
-                var customerResponse = JsonConvert.DeserializeObject<Candidato>(apiResponsePut);
+                var customerResponse = JsonConvert.DeserializeObject<Formaccand>(apiResponsePut);
                 if (customerResponse == null)
                     exito = false;
 
@@ -109,7 +109,7 @@ namespace ProyectoFinal.Repositories
 
 
                 using var responseDelete = await httpClient
-                  .DeleteAsync("http://localhost:62992/api/Candidato/DeleteCandidato/" + id);
+                  .DeleteAsync("http://localhost:62992/api/Formaccand/DeleteFormaccand/" + id);
                 string apiResponseDelete = await responseDelete.Content.ReadAsStringAsync();
                 if ((int)responseDelete.StatusCode == 404)
                     exito = false;
@@ -123,8 +123,6 @@ namespace ProyectoFinal.Repositories
 
             return exito;
         }
-
-
-
     }
 }
+

@@ -1,0 +1,107 @@
+﻿@model ProyectoFinal.Models.Idiomacandid
+@{
+    ViewData["Title"] = "IndexIdioma";
+}
+
+<div id="modalIdioma">
+    <button type="button" class="btn btn-outline-primary" id="btnAddCandidatoExp" data-toggle="modal" data-target="#ModelIdioma">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </button>
+    <div class="modal fade" id="ModelIdioma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>IDIOMA</label>
+                            @*<input type="text" class="form-control" id="txtidioma" />*@
+                            <label asp-for="IdiomaId" class="control-label"></label>
+                            <select asp-for="IdiomaId" class="form-control" asp-items="ViewBag.IdiomaId"></select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>NIVEL ORAL</label>
+                            @*<input type="text" class="form-control" id="txtniveloralidi" />*@
+                            <label asp-for="NiveloralidiId" class="control-label"></label>
+                            <select asp-for="NiveloralidiId" class="form-control" asp-items="ViewBag.NiveloralidiId"></select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>NIVEL ESCRITO</label>
+                            @*<input type="text" class="form-control" id="txtnivescrid" />*@
+                            <label asp-for="NivescridId" class="control-label"></label>
+                            <select asp-for="NivescridId" class="form-control" asp-items="ViewBag.NivescridId"></select>
+                        </div>
+
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnGuardarIdioma" class="btn btn-primary">Guardar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="containerIdioma" style="border:1px solid #1582d1">
+    <div class="row justify-content-center">
+        <p1>IDIOMAS</p1>
+    </div>
+    <div id="divIdioma">
+
+    </div>
+
+</div>
+<h1>HOLA</h1>
+
+<input type="hidden" id="hidIDIdioma" value="-1" />
+<script>
+
+
+    $("#btnGuardarIdioma").click(function () {
+        let vIDIdiomaC = $("#hidIDIdioma").val();
+        let vIdioma = $("#IdiomaId").val();
+        let vNivOral = $("#NiveloralidiId").val();
+        let vNivEscr = $("#NivescridId").val();
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "IndexIdioma",
+            cache: false,
+            data: {
+                id: vIDIdiomaC,
+                idioma: vIdioma,
+                NivOral: vNivOral,
+                NivEscr: vNivEscr,
+
+
+
+            },
+            success: function (exito) {
+                if (exito) {
+                    alert("Se registró correctamente")
+
+
+                } else {
+                    alert("Ocurrió un error en la transacción")
+                }
+            }
+        });
+
+    });
+
+</script>

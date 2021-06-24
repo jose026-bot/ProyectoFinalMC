@@ -9,59 +9,59 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinal.Repositories
 {
-    public class CandidatoRepository
+    public class IdiomacandidRepository
     {
-        public static async Task<IEnumerable<Candidato>> ListadoAsincrono()
+        public static async Task<IEnumerable<Idiomacandid>> ListadoAsincrono()
         {
             //using var data = new SalesContext();
             //var customers = await data.Customer.ToListAsync();
 
             using var httpClient = new HttpClient();
             using var response = await httpClient
-                .GetAsync("http://localhost:62992/api/Candidato/GetCandidato");
+                .GetAsync("http://localhost:62992/api/Idiomacandid/GetIdiomacandid");
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var candidato = JsonConvert.DeserializeObject<IEnumerable<Candidato>>(apiResponse);
+            var idiomacandid = JsonConvert.DeserializeObject<IEnumerable<Idiomacandid>>(apiResponse);
 
 
-            return candidato;
+            return idiomacandid;
         }
 
 
 
-        public static async Task<Candidato> Obtener(int id)
+        public static async Task<Idiomacandid> Obtener(int id)
         {
             using var httpClient = new HttpClient();
             using var response = await httpClient
-                .GetAsync("http://localhost:62992/api/Candidato/GetCandidatoById/" + id);
+                .GetAsync("http://localhost:62992/api/Idiomacandid/GetIdiomacandid/" + id);
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+            var idiomacandid = JsonConvert.DeserializeObject<Idiomacandid>(apiResponse);
 
 
-            return candidato;
+            return idiomacandid;
         }
 
 
-        public static async Task<bool> Insertar(Candidato Candidato)
+        public static async Task<bool> Insertar(Idiomacandid idiomacandid)
         {
             bool exito = true;
-
-            var json = JsonConvert.SerializeObject(Candidato);
+            
+            var json = JsonConvert.SerializeObject(idiomacandid);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            using var httpClient = new HttpClient(); 
+            using var httpClient = new HttpClient();
             using var response = await httpClient
-                .PostAsync("http://localhost:62992/api/Candidato/PostCandidato", data);
+                .PostAsync("http://localhost:62992/api/Idiomacandid/PostIdiomacandid", data);
             string apiResponse = await response.Content.ReadAsStringAsync();
-            var candidato = JsonConvert.DeserializeObject<Candidato>(apiResponse);
-            
-            if (candidato == null)
+            var Idiomacandids = JsonConvert.DeserializeObject<Idiomacandid>(apiResponse);
+
+            if (Idiomacandids == null)
                 exito = false;
 
             return exito;
         }
 
 
-        public static async Task<bool> Actualizar(Candidato Candidato)
+        public static async Task<bool> Actualizar(Idiomacandid idiomacandid)
         {
             bool exito = true;
 
@@ -70,17 +70,17 @@ namespace ProyectoFinal.Repositories
 
                 using var httpClient = new HttpClient();
                 using var response = await httpClient
-                    .GetAsync("http://localhost:62992/api/Candidato/GetCandidatoById/" + Candidato.Idcandidat);
+                    .GetAsync("http://localhost:62992/api/Idiomacandid/GetIdiomacandid/" + idiomacandid.Ididioma);
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                var customerByID = JsonConvert.DeserializeObject<Candidato>(apiResponse);
+                var idiomaByID = JsonConvert.DeserializeObject<Candidato>(apiResponse);
 
                 //Se realizar la actualización del customer
 
-                var json = JsonConvert.SerializeObject(Candidato);
+                var json = JsonConvert.SerializeObject(idiomacandid);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
                 using var responsePut = await httpClient
-                    .PutAsync("http://localhost:62992/api/Candidato/PutCandidato", data);
+                    .PutAsync("http://localhost:62992/api/Idiomacandid/PutIdiomacandid", data);
 
                 string apiResponsePut = await responsePut.Content.ReadAsStringAsync();
                 var customerResponse = JsonConvert.DeserializeObject<Candidato>(apiResponsePut);
@@ -109,7 +109,7 @@ namespace ProyectoFinal.Repositories
 
 
                 using var responseDelete = await httpClient
-                  .DeleteAsync("http://localhost:62992/api/Candidato/DeleteCandidato/" + id);
+                  .DeleteAsync("http://localhost:62992/api/Idiomacandid/DeleteIdiomacandid/" + id);
                 string apiResponseDelete = await responseDelete.Content.ReadAsStringAsync();
                 if ((int)responseDelete.StatusCode == 404)
                     exito = false;
@@ -123,8 +123,5 @@ namespace ProyectoFinal.Repositories
 
             return exito;
         }
-
-
-
     }
 }
