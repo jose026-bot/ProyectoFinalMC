@@ -1,0 +1,194 @@
+﻿@model ProyectoFinal.Models.Explabcand
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <button type="button" class="btn btn-outline-primary" id="btnAddExpLab" data-toggle="modal" data-target="#ModalExpLab">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </button>
+    <div class="modal fade" id="ModalExpLab" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de Empresa</label>
+                            <input type="text" class="form-control" id="txtNEmpresaExp" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Giro de la empresa</label>
+                            <select asp-for="GiroempresaId" class="form-control" asp-items="ViewBag.GiroempresaId"></select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Cargo</label>
+                            <input type="text" class="form-control" id="txtCargo" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Area</label>
+                            <select asp-for="AreatrabajoId" class="form-control" asp-items="ViewBag.AreatrabajoId"></select>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Estado</label>
+                        </div>
+                        <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" name="options" id="option1" checked> Actualmente
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option2"> Concluido
+                            </label>
+
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <label>Periodo Inicio</label>
+                            <input type="date" class="form-control" id="datePerInicio" />
+                        </div>
+
+                        <div class="col-md-5">
+                            <label>Periodo Fin</label>
+                            <input type="date" class="form-control" id="datePerFin" />
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <label>Descripción de la función</label>
+                            @*<input type="text" class="form-control" id="txtdescFuncion" />*@
+                            <textarea class="container-fluid" type="text" id="txtdescFuncion"></textarea>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarExpLab">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="containerExpLab" style="border:1px solid #1582d1">
+    <div class="row justify-content-center">
+        <p1>Experiencia laboral</p1>
+    </div>
+    <div id="divExpLab" class=" justify-content-center">
+
+    </div>
+
+</div>
+
+
+<input type="hidden" id="hidIDExpLab" value="-1" />
+<script>
+    CargarListaExpL();
+    function CargarListaExpL() {
+        $.ajax({
+            type: "GET",
+            url: "ListadoExpLab",
+            cache: false,
+            success: function (dataHtml) {
+                $("#divExpLab").html(dataHtml);
+            }
+
+        });
+
+    }
+    $("#divExpLab").on('click', '.btnRemoveExpL', function () {
+        let vIDExpLab = $(this).attr('data-id');
+
+        if (confirm("¿Está seguro de eliminar esto?")) {
+
+            $.ajax({
+                type: "POST",
+                url: "Eliminar",
+                cache: false,
+                data: { id: vIDExpLab },
+                success: function (exito) {
+                    if (exito) {
+                        CargarListaExpL();
+                    } else {
+                        alert("Ocurrió un error al eliminar el cliente....");
+                    }
+                }
+            });
+        }
+
+    });
+
+    $("#btnGuardarExpLab").click(function () {
+        let vIDExpLab = $("#hidIDExpLab").val();
+        let vNombreEmpresaExp = $("#txtNEmpresaExp").val();
+        let vGiroempresaId = $("#GiroempresaId").val();
+        let vCargo = $("#txtCargo").val();
+        let vArea = $("#AreatrabajoId").val();
+        let vInicio = $("#datePerInicio").val();
+        let vFin = $("#datePerFin").val();
+        let vFuncion = $("#txtdescFuncion").val();
+       
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "Index",
+            cache: false,
+            data: {
+                id: vIDExpLab,
+                NombreEmprEx: vNombreEmpresaExp,
+                Giro: vGiroempresaId,
+                Inicio: vInicio,
+                Fin: vFin,
+                FuncionD: vFuncion,
+                Cargo: vCargo,
+                
+                Area: vArea,
+                
+               
+                 
+
+
+
+            },
+            success: function (exito) {
+                if (exito) {
+                    alert("Se registró correctamente")
+
+
+                } else {
+                    alert("Ocurrió un error en la transacción")
+                }
+            }
+        });
+
+    });
+
+</script>

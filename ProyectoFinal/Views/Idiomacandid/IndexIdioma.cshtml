@@ -14,7 +14,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Registro</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -24,13 +24,13 @@
                         <div class="col-md-6">
                             <label>IDIOMA</label>
                             @*<input type="text" class="form-control" id="txtidioma" />*@
-                            <label asp-for="IdiomaId" class="control-label"></label>
+                            
                             <select asp-for="IdiomaId" class="form-control" asp-items="ViewBag.IdiomaId"></select>
                         </div>
                         <div class="col-md-6">
                             <label>NIVEL ORAL</label>
                             @*<input type="text" class="form-control" id="txtniveloralidi" />*@
-                            <label asp-for="NiveloralidiId" class="control-label"></label>
+                           
                             <select asp-for="NiveloralidiId" class="form-control" asp-items="ViewBag.NiveloralidiId"></select>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                             <label>NIVEL ESCRITO</label>
                             @*<input type="text" class="form-control" id="txtnivescrid" />*@
-                            <label asp-for="NivescridId" class="control-label"></label>
+                           
                             <select asp-for="NivescridId" class="form-control" asp-items="ViewBag.NivescridId"></select>
                         </div>
 
@@ -56,9 +56,10 @@
 </div>
 <div class="containerIdioma" style="border:1px solid #1582d1">
     <div class="row justify-content-center">
-        <p1>IDIOMAS</p1>
+        <h3>IDIOMAS</h3>
     </div>
-    <div id="divIdioma">
+    <hr style="border:1px solid #1582d1" />
+    <div id="divIdioma" class=" justify-content-center">
 
     </div>
 
@@ -68,8 +69,65 @@
 <input type="hidden" id="hidIDIdioma" value="-1" />
 <script>
 
+    $("#divIdioma").on('click', '.btnUpdateIdioma', function () {
+        let vIDIdiomaC = $(this).attr('data-id');
+        $("#hidIDIdioma").val(vIDIdiomaC);
+        let modalRegistro = $("#ModelIdioma");
+
+        $.ajax({
+            type: "GET",
+            url: "Obtener",
+            cache: false,
+            data: { id: vIDIdiomaC },
+            success: function (objIdioma) {
+
+                $("#IdiomaId").val(objIdioma.idioma);
+                $("#NiveloralidiId").val(objIdioma.NivOral);
+                $("#NivescridId").val(objIdioma.NivEscr);
+
+                modalRegistro.modal();
+                /*modalRegistro.find("#modalIdioma".html("Editar"));*/
+            }
+        });
+    });
+    CargarListaIdiomaCandid();
+    function CargarListaIdiomaCandid() {
+        $.ajax({
+            type: "GET",
+            url: "ListadoIdioma",
+            cache: false,
+            success: function (dataHtml) {
+                $("#divIdioma").html(dataHtml);
+            }   
+
+        });
+
+    }
+    
+    $("#divIdioma").on('click', '.btnRemoveIdioma', function () {
+        let vIDIdiomaC = $(this).attr('data-id');
+
+        if (confirm("¿Está seguro de eliminar este idioma?")) {
+
+            $.ajax({
+                type: "POST",
+                url: "Eliminar",
+                cache: false,
+                data: { id: vIDIdiomaC },
+                success: function (exito) {
+                    if (exito) {
+                        CargarListaIdiomaCandid();
+                    } else {
+                        alert("Ocurrió un error al eliminar el cliente....");
+                    }
+                }
+            });
+        }
+
+    });
 
     $("#btnGuardarIdioma").click(function () {
+
         let vIDIdiomaC = $("#hidIDIdioma").val();
         let vIdioma = $("#IdiomaId").val();
         let vNivOral = $("#NiveloralidiId").val();
@@ -94,7 +152,8 @@
             success: function (exito) {
                 if (exito) {
                     alert("Se registró correctamente")
-
+                    CargarListaIdiomaCandid();
+                    $("#ModelIdioma").modal("toggle");
 
                 } else {
                     alert("Ocurrió un error en la transacción")

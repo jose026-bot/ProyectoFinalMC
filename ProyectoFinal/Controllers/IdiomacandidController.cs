@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ProyectoFinal.Models;
 using ProyectoFinal.Repositories;
 using System;
@@ -23,16 +24,35 @@ namespace ProyectoFinal.Controllers
         }
         public IActionResult IndexIdioma()
         {
-            ViewData["IdiomaId"] = new SelectList(_context.Idioma, "IdiomaId", "descripcion");
-            ViewData["NiveloralidiId"] = new SelectList(_context.Niveloralidi, "NiveloralidiId", "descripcion");
-            ViewData["NivescridId"] = new SelectList(_context.Nivescrid, "NivescridId", "descripcion");
+            ViewData["IdiomaId"] = new SelectList(_context.Idioma, "Id", "Descripcion");
+            ViewData["NiveloralidiId"] = new SelectList(_context.Niveloralidi, "Id", "Descripcion");
+            ViewData["NivescridId"] = new SelectList(_context.Nivescrid, "Id", "Descripcion");
             return View();
         }
-        public IActionResult ListadoIdioma()
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int id)
         {
-            
-            return PartialView();
+            bool exito = await IdiomacandidRepository.Eliminar(id);
+            return Json(exito);
         }
+        public async Task<IActionResult> ListadoIdioma()
+        {
+            var portalEmpleo4Context = _context.Idiomacandid.Include(i => i.CandidatoIdcandidatNavigation).Include(i =>
+            i.Idioma).Include(i => i.Niveloralidi).Include(i => i.Nivescrid);
+
+            return PartialView(await portalEmpleo4Context.ToListAsync());
+        }
+       
+        public async Task<IActionResult> Obtener(int id)
+        {
+            var idiomacand = await IdiomacandidRepository.Obtener(id);
+            //ViewData["IdiomaId"] = new SelectList(_context.Idioma, "Id", "Descripcion", idiomacandid.IdiomaId);
+            //ViewData["NiveloralidiId"] = new SelectList(_context.Niveloralidi, "Id", "Descripcion", idiomacandid.Niveloralidi);
+            //ViewData["NivescridId"] = new SelectList(_context.Nivescrid, "Id", "Descripcion", idiomacandid.NivescridId);
+
+            return Json(idiomacand);
+        }
+
         public IActionResult NewIdioma()
         {
             
@@ -52,9 +72,9 @@ namespace ProyectoFinal.Controllers
                 
 
             };
-            ViewData["IdiomaId"] = new SelectList(_context.Idioma, "IdiomaId", "Descripcion", idiomacandid.IdiomaId);
-            ViewData["NiveloralidiId"] = new SelectList(_context.Niveloralidi, "NiveloralidiId", "Descripcion", idiomacandid.Niveloralidi);
-            ViewData["NivescridId"] = new SelectList(_context.Nivescrid, "NivescridId", "Descripcion", idiomacandid.NivescridId);
+            ViewData["IdiomaId"] = new SelectList(_context.Idioma, "Id", "Descripcion", idiomacandid.IdiomaId);
+            ViewData["NiveloralidiId"] = new SelectList(_context.Niveloralidi, "Id", "Descripcion", idiomacandid.Niveloralidi);
+            ViewData["NivescridId"] = new SelectList(_context.Nivescrid, "Id", "Descripcion", idiomacandid.NivescridId);
             
 
             bool exito = true;

@@ -91,8 +91,8 @@ namespace ProyectoFinal.Controllers
                 exito = await CandidatoRepository.Actualizar(candidato);
             }
             return Json(exito);
-
             
+
             
 
         }

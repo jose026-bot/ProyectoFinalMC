@@ -1,0 +1,205 @@
+﻿@*FORMACION ACADEMICA*@
+@model ProyectoFinal.Models.Formaccand
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <button type="button" class="btn btn-outline-primary" id="btnAddFormAcad" data-toggle="modal" data-target="#ModelFormacion">
+        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+    </button>
+    <div class="modal fade" id="ModelFormacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre de la Institución</label>
+                            <input type="text" class="form-control" id="txtnombrecentroed" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Tipo de estudio</label>
+                            <select asp-for="TipoestudioId" class="form-control" asp-items="ViewBag.TipoestudioId"></select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Estado</label>
+                        </div>
+                        <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                            <label class="btn btn-secondary ">
+                                <input type="radio" name="options" id="EnCurso"> En curso
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="Graduado"> Graduado
+                            </label>
+
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Titulo/Carrera</label>
+                            <input type="text" class="form-control" id="txttitulocarrera" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Area de estudio</label>
+                            <select asp-for="AreaestudioId" class="form-control" asp-items="ViewBag.AreaestudioId"></select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Fecha Inicio</label>
+                            <input type="date" class="form-control" id="datefechainicio" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Fecha Fin</label>
+                            <input type="date" class="form-control" id="datefechafin" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>País de Estudio</label>
+                            <select asp-for="PaisId" class="form-control" asp-items="ViewBag.PaisId"></select>
+                        </div>
+
+                    </div>
+                    <br />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="btnGuardarFormacion" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="containerFormacion " style="border:1px solid #1582d1">
+    <div class="row justify-content-center">
+        <h1>Formación académica</h1>
+    </div>
+    <hr style="border: 1px solid #1582d1"/>
+    <div id="divFormAcad" class=" justify-content-center">
+
+    </div>
+
+</div>
+
+
+<input type="hidden" id="hidIDFormcCand" value="-1" />
+@*<script type="text/javascript">
+    $(function () {
+        $("input[name='options']").click(function () {
+            if ($("#Graduado").is(":checked")) {
+                $("#datefechafin").removeAttr("disabled");
+                $("#datefechafin").focus();
+            } else {
+                $("#datefechafin").attr("disabled", "disabled");
+            }
+        });
+
+
+    });
+
+
+</script>*@
+<script>
+
+    CargarListaFormCandid();
+    function CargarListaFormCandid() {
+        $.ajax({
+            type: "GET",
+            url: "ListadoFormAcad",
+            cache: false,
+            success: function (dataHtml) {
+                $("#divFormAcad").html(dataHtml);
+            }
+
+        });
+
+    }
+    $("#divFormAcad").on('click', '.btnRemoveForm', function () {
+        let vIDFormacionCandidato = $(this).attr('data-id');
+
+        if (confirm("¿Está seguro de eliminar este idioma?")) {
+
+            $.ajax({
+                type: "POST",
+                url: "Eliminar",
+                cache: false,
+                data: { id: vIDFormacionCandidato },
+                success: function (exito) {
+                    if (exito) {
+                        CargarListaFormCandid();
+                    } else {
+                        alert("Ocurrió un error al eliminar el cliente....");
+                    }
+                }
+            });
+        }
+
+    });
+
+    $("#btnGuardarFormacion").click(function () {
+        let vIDFormacionCandidato = $("#hidIDFormcCand").val();
+        let vCentroEducativo = $("#txtnombrecentroed").val();
+        let vTipoestudioId = $("#TipoestudioId").val();
+       
+        
+        
+        let vTituloCarrera = $("#txttitulocarrera").val();
+        let vAreaestudioId = $("#AreaestudioId").val();
+        let vFechaInicio = $("#datefechainicio").val();
+        let vFechaTermino = $("#datefechafin").val();
+        let vPaisId = $("#PaisId").val();
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "Index",
+            cache: false,
+            data: {
+                id: vIDFormacionCandidato,
+                CentroEduc: vCentroEducativo,
+                TipoEstudio: vTipoestudioId,
+               
+                TituloCarrera: vTituloCarrera,
+                AreaEst:vAreaestudioId,
+                FechIn:vFechaInicio,
+                FechTerm:vFechaTermino,
+                Pais:vPaisId
+
+
+
+            },
+            success: function (exito) {
+                if (exito) {
+                    alert("Se registró correctamente")
+
+
+                } else {
+                    alert("Ocurrió un error en la transacción")
+                }
+            }
+        });
+
+    });
+
+</script>

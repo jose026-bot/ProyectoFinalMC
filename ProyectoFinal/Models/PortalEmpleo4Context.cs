@@ -429,7 +429,7 @@ namespace ProyectoFinal.Models
 
             modelBuilder.Entity<Idioma>(entity =>
             {
-                entity.ToTable("idioma");
+               entity.ToTable("idioma");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
